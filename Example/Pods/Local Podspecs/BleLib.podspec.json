@@ -1,0 +1,22 @@
+{
+  "name": "BleLib",
+  "version": "0.1.0",
+  "summary": "A short description of BleLib.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Thomas Misrahi/BleLib",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Thomas Misrahi": "tmisrahi@waya-tech.com"
+  },
+  "source": {
+    "git": "https://github.com/Thomas Misrahi/BleLib.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "BleLib/Classes/**/*"
+}

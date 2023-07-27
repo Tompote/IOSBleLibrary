@@ -1,0 +1,6 @@
+framework module BleLib {
+  umbrella header "BleLib-umbrella.h"
+
+  export *
+  module * { export * }
+}

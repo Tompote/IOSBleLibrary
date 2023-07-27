@@ -1,0 +1,16 @@
+PODS:
+  - BleLib (0.1.0)
+
+DEPENDENCIES:
+  - BleLib (from `../`)
+
+EXTERNAL SOURCES:
+  BleLib:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BleLib: ac7692b75f300354cc4fe7a4fef8ca2f2abab68c
+
+PODFILE CHECKSUM: 4344eece5bf0f407dcec8767c04f4cf9cd750867
+
+COCOAPODS: 1.12.1
