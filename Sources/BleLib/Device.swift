@@ -21,19 +21,19 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.peripheral.delegate = self
     }
 
-    func getName() -> String? {
+    public func getName() -> String? {
         return self.peripheral.name
     }
 
-    func getId() -> String {
+    public func getId() -> String {
         return self.peripheral.identifier.uuidString
     }
 
-    func isConnected() -> Bool {
+    public func isConnected() -> Bool {
         return self.peripheral.state == CBPeripheralState.connected
     }
 
-    func getPeripheral() -> CBPeripheral {
+    public func getPeripheral() -> CBPeripheral {
         return self.peripheral
     }
 
@@ -46,7 +46,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.setTimeout(key, "Connection timeout", connectionTimeout)
     }
 
-    func peripheral(
+    public func peripheral(
         _ peripheral: CBPeripheral,
         didDiscoverServices error: Error?
     ) {
@@ -64,7 +64,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         }
     }
 
-    func peripheral(
+    public func peripheral(
         _ peripheral: CBPeripheral,
         didDiscoverCharacteristicsFor service: CBService,
         error: Error?
@@ -82,7 +82,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         }
     }
 
-    func peripheral(
+    public func peripheral(
         _ peripheral: CBPeripheral,
         didDiscoverDescriptorsFor characteristic: CBCharacteristic,
         error: Error?
@@ -94,7 +94,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         }
     }
 
-    func getServices() -> [CBService] {
+    public func getServices() -> [CBService] {
         return self.peripheral.services ?? []
     }
 
@@ -108,7 +108,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.setTimeout(key, "Service discovery timeout.", timeout)
     }
 
-    func getMtu() -> Int {
+    public func getMtu() -> Int {
         // maximumWriteValueLength is 3 bytes less than ATT MTU
         return self.peripheral.maximumWriteValueLength(for: .withoutResponse) + 3
     }
@@ -124,7 +124,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.setTimeout(key, "Reading RSSI timeout.", timeout)
     }
 
-    func peripheral(
+    public func peripheral(
         _ peripheral: CBPeripheral,
         didReadRSSI RSSI: NSNumber,
         error: Error?
@@ -186,7 +186,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.setTimeout(key, "Read timeout.", timeout)
     }
 
-    func peripheral(
+    public func peripheral(
         _ peripheral: CBPeripheral,
         didUpdateValueFor characteristic: CBCharacteristic,
         error: Error?
@@ -230,7 +230,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.setTimeout(key, "Read descriptor timeout.", timeout)
     }
 
-    func peripheral(
+    public func peripheral(
         _ peripheral: CBPeripheral,
         didUpdateValueFor descriptor: CBDescriptor,
         error: Error?
@@ -271,7 +271,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         }
     }
 
-    func peripheral(
+    public func peripheral(
         _ peripheral: CBPeripheral,
         didWriteValueFor characteristic: CBCharacteristic,
         error: Error?
@@ -303,7 +303,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.setTimeout(key, "Write descriptor timeout.", timeout)
     }
 
-    func peripheral(
+    public func peripheral(
         _ peripheral: CBPeripheral,
         didWriteValueFor descriptor: CBDescriptor,
         error: Error?
@@ -339,7 +339,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.setTimeout(key, "Set notifications timeout.", timeout)
     }
 
-    func peripheral(
+    public func peripheral(
         _ peripheral: CBPeripheral,
         didUpdateNotificationStateFor characteristic: CBCharacteristic,
         error: Error?

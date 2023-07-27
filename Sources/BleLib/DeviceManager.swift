@@ -29,12 +29,12 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         self.centralManager = CBCentralManager(delegate: self, queue: DispatchQueue.main)
     }
 
-    func setDisplayStrings(_ displayStrings: [String: String]) {
+    public func setDisplayStrings(_ displayStrings: [String: String]) {
         self.displayStrings = displayStrings
     }
 
     // initialize
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         let initializeKey = "initialize"
         switch central.state {
         case .poweredOn:
@@ -58,7 +58,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         }
     }
 
-    func isEnabled() -> Bool {
+    public func isEnabled() -> Bool {
         return self.centralManager.state == CBManagerState.poweredOn
     }
 
@@ -66,11 +66,11 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         self.stateReceiver = stateReceiver
     }
 
-    func unregisterStateReceiver() {
+    public func unregisterStateReceiver() {
         self.stateReceiver = nil
     }
 
-    func emitState(enabled: Bool) {
+    public func emitState(enabled: Bool) {
         guard let stateReceiver = self.stateReceiver else { return }
         stateReceiver(enabled)
     }
@@ -119,7 +119,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         }
     }
 
-    func stopScan() {
+    public func stopScan() {
         //log("Stop scanning.")
         self.centralManager.stopScan()
         self.stopScanWorkItem?.cancel()
@@ -134,7 +134,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
     }
 
     // didDiscover
-    func centralManager(
+    public func centralManager(
         _ central: CBCentralManager,
         didDiscover peripheral: CBPeripheral,
         advertisementData: [String: Any],
@@ -172,7 +172,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         }
     }
 
-    func showDeviceList() {
+    public func showDeviceList() {
         DispatchQueue.main.async { [weak self] in
             self?.alertController = UIAlertController(title: self?.displayStrings["scanning"], message: nil, preferredStyle: UIAlertController.Style.alert)
             self?.alertController?.addAction(UIAlertAction(title: self?.displayStrings["cancel"], style: UIAlertAction.Style.cancel, handler: { (_) -> Void in
@@ -184,13 +184,13 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         }
     }
 
-    func getDevices(
+    public func getDevices(
         _ deviceUUIDs: [UUID]
     ) -> [CBPeripheral] {
         return self.centralManager.retrievePeripherals(withIdentifiers: deviceUUIDs)
     }
 
-    func getConnectedDevices(
+    public func getConnectedDevices(
         _ serviceUUIDs: [CBUUID]
     ) -> [CBPeripheral] {
         return self.centralManager.retrieveConnectedPeripherals(withServices: serviceUUIDs)
@@ -209,7 +209,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
     }
 
     // didConnect
-    func centralManager(
+    public func centralManager(
         _ central: CBCentralManager,
         didConnect peripheral: CBPeripheral
     ) {
@@ -221,7 +221,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
     }
 
     // didFailToConnect
-    func centralManager(
+    public func centralManager(
         _ central: CBCentralManager,
         didFailToConnect peripheral: CBPeripheral,
         error: Error?
@@ -259,7 +259,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
     }
 
     // didDisconnectPeripheral
-    func centralManager(
+    public func centralManager(
         _ central: CBCentralManager,
         didDisconnectPeripheral peripheral: CBPeripheral,
         error: Error?
@@ -275,7 +275,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         self.resolve(key, "Successfully disconnected.")
     }
 
-    func getDevice(_ deviceId: String) -> Device? {
+    public func getDevice(_ deviceId: String) -> Device? {
         return self.discoveredDevices[deviceId]
     }
 
