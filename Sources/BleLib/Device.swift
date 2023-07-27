@@ -2,7 +2,7 @@
 import Foundation
 import CoreBluetooth
 
-class Device: NSObject, CBPeripheralDelegate {
+public class Device: NSObject, CBPeripheralDelegate {
     typealias Callback = (_ success: Bool, _ value: String) -> Void
 
     private var peripheral: CBPeripheral!

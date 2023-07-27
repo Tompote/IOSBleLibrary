@@ -1,7 +1,7 @@
 import Foundation
 import CoreBluetooth
 
-class DeviceManager: NSObject, CBCentralManagerDelegate {
+public class DeviceManager: NSObject, CBCentralManagerDelegate {
     typealias Callback = (_ success: Bool, _ message: String) -> Void
     typealias StateReceiver = (_ enabled: Bool) -> Void
     typealias ScanResultCallback = (_ device: Device, _ advertisementData: [String: Any], _ rssi: NSNumber) -> Void
