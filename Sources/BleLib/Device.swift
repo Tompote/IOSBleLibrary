@@ -248,7 +248,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.resolve(key, valueString)
     }
 
-    func write(
+    public func write(
         _ serviceUUID: CBUUID,
         _ characteristicUUID: CBUUID,
         _ value: String,
