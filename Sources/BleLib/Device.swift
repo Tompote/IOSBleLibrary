@@ -3,7 +3,7 @@ import Foundation
 import CoreBluetooth
 
 public class Device: NSObject, CBPeripheralDelegate {
-    typealias Callback = (_ success: Bool, _ value: String) -> Void
+    public typealias Callback = (_ success: Bool, _ value: String) -> Void
 
     private var peripheral: CBPeripheral!
     private var callbackMap = [String: Callback]()
