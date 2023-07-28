@@ -13,7 +13,7 @@ public class Device: NSObject, CBPeripheralDelegate {
     private var characteristicsCount = 0
     private var characteristicsDiscovered = 0
 
-    init(
+    public init(
         _ peripheral: CBPeripheral
     ) {
         super.init()
@@ -37,7 +37,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         return self.peripheral
     }
 
-    func setOnConnected(
+    public func setOnConnected(
         _ connectionTimeout: Double,
         _ callback: @escaping Callback
     ) {
@@ -98,7 +98,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         return self.peripheral.services ?? []
     }
 
-    func discoverServices(
+    public func discoverServices(
         _ timeout: Double,
         _ callback: @escaping Callback
     ) {
@@ -113,7 +113,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         return self.peripheral.maximumWriteValueLength(for: .withoutResponse) + 3
     }
 
-    func readRssi(
+    public func readRssi(
         _ timeout: Double,
         _ callback: @escaping Callback
     ) {
@@ -169,7 +169,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         return nil
     }
 
-    func read(
+    public func read(
         _ serviceUUID: CBUUID,
         _ characteristicUUID: CBUUID,
         _ timeout: Double,
@@ -212,7 +212,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         }
     }
 
-    func readDescriptor(
+    public func readDescriptor(
         _ serviceUUID: CBUUID,
         _ characteristicUUID: CBUUID,
         _ descriptorUUID: CBUUID,
@@ -284,7 +284,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.resolve(key, "Successfully written value.")
     }
 
-    func writeDescriptor(
+    public func writeDescriptor(
         _ serviceUUID: CBUUID,
         _ characteristicUUID: CBUUID,
         _ descriptorUUID: CBUUID,
@@ -316,7 +316,7 @@ public class Device: NSObject, CBPeripheralDelegate {
         self.resolve(key, "Successfully written descriptor value.")
     }
 
-    func setNotifications(
+    public func setNotifications(
         _ serviceUUID: CBUUID,
         _ characteristicUUID: CBUUID,
         _ enable: Bool,

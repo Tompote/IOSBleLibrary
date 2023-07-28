@@ -21,7 +21,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
     private var shouldShowDeviceList = false
     private var allowDuplicates = false
 
-    init(_ viewController: UIViewController?, _ displayStrings: [String: String], _ callback: @escaping Callback) {
+    public init(_ viewController: UIViewController?, _ displayStrings: [String: String], _ callback: @escaping Callback) {
         super.init()
         self.viewController = viewController
         self.displayStrings = displayStrings
@@ -62,7 +62,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         return self.centralManager.state == CBManagerState.poweredOn
     }
 
-    func registerStateReceiver( _ stateReceiver: @escaping StateReceiver) {
+    public func registerStateReceiver( _ stateReceiver: @escaping StateReceiver) {
         self.stateReceiver = stateReceiver
     }
 
@@ -75,7 +75,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         stateReceiver(enabled)
     }
 
-    func startScanning(
+    public func startScanning(
         _ serviceUUIDs: [CBUUID],
         _ name: String?,
         _ namePrefix: String?,
@@ -196,7 +196,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         return self.centralManager.retrieveConnectedPeripherals(withServices: serviceUUIDs)
     }
 
-    func connect(
+    public func connect(
         _ device: Device,
         _ connectionTimeout: Double,
         _ callback: @escaping Callback
@@ -234,7 +234,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         self.reject(key, "Failed to connect.")
     }
 
-    func setOnDisconnected(
+    public func setOnDisconnected(
         _ device: Device,
         _ callback: @escaping Callback
     ) {
@@ -242,7 +242,7 @@ public class DeviceManager: NSObject, CBCentralManagerDelegate {
         self.callbackMap[key] = callback
     }
 
-    func disconnect(
+    public func disconnect(
         _ device: Device,
         _ timeout: Double,
         _ callback: @escaping Callback
